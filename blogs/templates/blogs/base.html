@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG</title>
+</head>
+<body>
+<p>
+    <a href="{% url 'blogs:index' %}">Blog</a> -
+    <a href="{% url 'blogs:blogs' %}">Blogs</a>
+
+</p>
+{% block content %}{% endblock content %}
+
+</body>
+</html>
