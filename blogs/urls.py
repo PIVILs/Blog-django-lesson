@@ -9,4 +9,7 @@ urlpatterns = [
     path('blogs', views.all_blogs, name='blogs'),
     # Страница с подробной информацией по отдельному блогу
     path('blogs/<int:blog_id>/', views.the_blog, name='blog'),
-    ]
+    # Страница для добавления нового блога
+    path('new_blog/', views.new_blog, name='new_blog'),
+
+]

@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import BlogPost
+from .forms import BlogForm
 
 def index(request):
     """Домашняя страница приложения Blog"""
@@ -17,5 +18,21 @@ def the_blog(request, blog_id):
     entries = blog.entry_set.order_by('date_added')
     context = {'blog': blog, 'entries': entries}
     return render(request, 'blogs/blog.html', context)
+
+def new_blog(request):
+    """Определяет новый блог."""
+    if request.method != 'POST':
+        # Данные не отправлялись, создается пустая форма.
+        form = BlogForm()
+    else:
+        # Отправлены данные POST, обработать данные.
+        form = BlogForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('blogs:blogs')
+
+    # Вывести пустую или не действующую форму.
+    context = {'form': form}
+    return render(request, 'blogs/new_blog.html', context)
 
 
