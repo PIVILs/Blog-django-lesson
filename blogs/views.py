@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import BlogPost
+from .models import BlogPost, Entry
 from .forms import BlogForm, EntryForm
 
 def index(request):
@@ -51,3 +51,19 @@ def new_entry(request, blog_id):
 
     context = {'blog':blog, 'form': form}
     return render(request, 'blogs/new_entry.html', context)
+
+def edit_entry(request, entry_id):
+    """ Редактирует существующую запись."""
+    entry = Entry.objects.get(id=entry_id)
+    blog = entry.blog
+
+    if request.method != 'POST':
+        form = EntryForm(instance=entry)
+    else:
+        form = EntryForm(instance=entry, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('blogs:blog', blog_id=blog.id)
+
+    context = {'entry': entry, 'blog': blog, 'form': form}
+    return render(request, 'blogs/edit_entry.html', context)
