@@ -36,9 +36,9 @@ def new_blog(request):
         form = BlogForm(data=request.POST)
         if form.is_valid():
             new_blog = form.save(commit=False)
-            new_blog.owner =request.user
+            new_blog.owner = request.user
             new_blog.save()
-            form.save()
+            #form.save()
             return redirect('blogs:blogs')
 
     # Вывести пустую или не действующую форму.

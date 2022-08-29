@@ -1,14 +1,13 @@
 {% extends "blogs/base.html" %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<p>Blog</p>
-{% block content %}
-<p>The blog I write because I was given this exercise.</p>
-{% endblock content %}
 
-</body>
-</html>
+
+{% block page_header %}
+  <div class="jumbotron">
+    <h1 class="display-3">Personal blog for personal entries</h1>
+
+    <p class="lead">Write whatever you want...</p>
+
+    <a class="btn btn-lg btn-success" href="{% url 'users:register' %}" role="button">Register &raquo;</a>
+  </div>
+
+{% endblock page_header %}

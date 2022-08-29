@@ -1,19 +1,13 @@
 {% extends "blogs/base.html" %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 {% block content %}
-    <p><a href="{% url 'blogs:blog' blog.id %}">{{ blog }}</a></p>
 
-    <p>Add a new entry:</p>
-    <form action="{% url 'blogs:new_entry' blog.id %}" method="post">
+    <p><h3>
+        <a href="{% url 'blogs:blog' blog.id %}">{{ topic }}</a>
+    </h3></p>
+    <p>Add a new blog:</p>
+    <form action="{% url 'blogs:new_entry' blog.id %}" method='post'>
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="submit">Add entry</button>
+        <button name="submit" class="btn btn-success">Add entry</button>
     </form>
 {% endblock content %}
-</body>
-</html>

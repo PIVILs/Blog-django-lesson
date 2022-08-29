@@ -1,25 +1,24 @@
 {% extends "blogs/base.html" %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+
+{% block page_header %}
+    <h2>Blogs</h2>
+{% endblock page_header %}
+
 {% block content %}
-    <p>Blogs</p>
+  <p>Your blogs:</p>
 
-    <ul>
-        {% for blog in blogs %}
-            <li>
-                <a href="{% url 'blogs:blog' blog.id %}">{{ blog }}</a>
-            </li>
-        {% empty %}
-            <li>No blogs have been added yet.</li>
-        {% endfor %}
-    </ul>
+  <ul>
+    {% for blog in blogs %}
+      <li><h3>
+        <a href="{% url 'blogs:blog' blog.id %}">{{ blog }}</a>
+      </h3></li>
 
-    <a href="{% url 'blogs:new_blog' %}">Add a new blog:</a>
+
+    {% empty %}
+      <li><h3>No blogs have been added yet.</h3></li>
+    {% endfor %}
+  </ul>
+
+  <h4><a href="{% url 'blogs:new_blog' %}">Add a new blog:</a></h4>
+
 {% endblock content %}
-
-</body>
-</html>
